@@ -1,0 +1,13 @@
+﻿<ion-view view-title="Lista de quadras">
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="product in products" type="item-text-wrap"  href="#/tab/products/{{product.id}}">
+                <img ng-src="{{product.ico}}">
+                <h2>{{product.name}}</h2>
+                <p>{{product.business_address}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

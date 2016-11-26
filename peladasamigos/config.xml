@@ -81,4 +81,9 @@
     <icon src="resources/windows/icon/logo71x71.scale-100.png" width="71" height="71" />
     <icon src="resources/windows/icon/wide310x150.scale-100.png" width="310" height="150" />
   </platform>
+  <plugin name="cordova-plugin-ms-adal" version="0.8.1" />
+  <plugin name="phonegap-plugin-push" version="1.8.4">
+    <variable name="SENDER_ID" value="31994504001" />
+  </plugin>
+  <plugin name="cordova-plugin-compat" version="1.1.0" />
 </widget>
