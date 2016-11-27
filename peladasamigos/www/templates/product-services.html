@@ -7,24 +7,21 @@
 <ion-view view-title="{{product.name}}">
     <ion-content class="padding">
         <img ng-src="{{product.ico}}" style="width: 100px; height: 100px">
+        
         <p>
-            {{product.business_address}}
-        </p>
-        <div class="item item-divider">
-            Selecione uma data
-        </div>
+            {{product.business_adress}}
+        </p>  
+        
+        
+        <button class="button button-positive" ng-click="fazerPedidoReserva(product)">
+            Enviar reserva
+        </button>
 
-        <ion-list>
-            <label class="item item-input">
-                <span class="input-label">Data</span>
-                <input type="date">
-            </label>
-        </ion-list>
-        <div class="item item-divider">
+        <div class="item item-divider" style="margin-top: 10px;">
             Lista de horários
         </div>
          <ion-list>
-            <ion-toggle ng-repeat="item in servicesAll"
+            <ion-toggle ng-repeat="item in product.reservas"
                         ng-model="item.select"
                         ng-checked="item.select">
                 {{ item.hour }}
