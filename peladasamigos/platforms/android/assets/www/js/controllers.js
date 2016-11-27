@@ -10,7 +10,7 @@ angular.module('starter.controllers', ['ngCordova'])
     function onDeviceReady(){
         var push = PushNotification.init(
             {
-                "android": { "senderID": "31994504001" },
+                "android": { "senderID": "747034740221" },
                 ios: {
                     alert: 'true',
                     badge: true,
@@ -20,6 +20,7 @@ angular.module('starter.controllers', ['ngCordova'])
             });
 
         push.on('registration', function (data) {
+            $scope.registrationId = data.registrationId
             document.getElementById("gcm_id").innerHTML = data.registrationId;
         });
 
@@ -31,6 +32,9 @@ angular.module('starter.controllers', ['ngCordova'])
             alert(e);
         });
     }
+
+
+
 })
 
 
