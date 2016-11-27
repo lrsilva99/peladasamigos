@@ -1,4 +1,5 @@
-﻿angular.module('starter.services', [])
+﻿ 
+angular.module('starter.services', [])
 
  // Arqui vamos pegar a relação das quadras.
     
@@ -87,6 +88,6 @@
         }
     };
 })
-
 ;
+
 
