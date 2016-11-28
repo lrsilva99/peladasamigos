@@ -6,15 +6,15 @@
     // Might use a resource here that returns a JSON array
 
     var _getQuadras = function () {
-        return $http.get("http://localhost:8181/api/quadras");
+        return $http.get("http://peladaservice.cloudapp.net/api/quadras");
     };
 
     var _getQuadra = function (id) {
-        return $http.get("http://localhost:8181/api/quadras/" + id);
+        return $http.get("http://peladaservice.cloudapp.net/api/quadras/" + id);
     };
 
     var _postPedidoReservaQuadra = function (pedidoReservaQuadra) {
-        return $http.post("http://localhost:8181/api/quadras", pedidoReservaQuadra);
+        return $http.post("http://peladaservice.cloudapp.net/api/quadras", pedidoReservaQuadra);
     }
 
     return {
