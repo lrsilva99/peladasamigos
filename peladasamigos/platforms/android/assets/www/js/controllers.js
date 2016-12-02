@@ -1,48 +1,62 @@
 angular.module('starter.controllers', ['ngCordova'])
 
-.controller('HomeCtrl', function ($scope,$cordovaPush) {
 
-    //link do exemplo que utilizei https://phonegappro.com/tutorials/apache-cordova-phonegap-push-notification-tutorial-part-2/    
-  
-    //Não sei onde devo colocar o código abixo
+.controller('HomeCtrl', function ($scope) {})
 
-    document.addEventListener("deviceready",onDeviceReady,false);
-    function onDeviceReady(){
+
+.controller('ProductsCtrl', function ($scope, $http, Products) {
+    Products.getProductsAll().success(function (data) {
+        console.log(data);
+        $scope.products = data;
+    }).error(function (data, status) {
+        console.log("Erro ao executar get");
+    });
+})
+
+.controller('ProductServicesCrtl', function ($scope, $stateParams, Products) {
+
+
+    Products.getProduct($stateParams.productId).success(function (data) {
+        console.log(data);
+        $scope.product = data;
+    }).error(function (data, status) {
+        console.log("Erro ao executar get");
+    });
+
+    $scope.fazerPedidoReserva = function (quadra) {
+
         var push = PushNotification.init(
-            {
-                "android": { "senderID": "747034740221" },
-                ios: {
-                    alert: 'true',
-                    badge: true,
-                    sound: 'false'
-                },
-                windows: {}
-            });
+        {
+            "android": { "senderID": "747034740221" },
+            ios: {
+                alert: 'true',
+                badge: true,
+                sound: 'false'
+            },
+            windows: {}
+        });
 
         push.on('registration', function (data) {
-            $scope.registrationId = data.registrationId
-            document.getElementById("gcm_id").innerHTML = data.registrationId;
+            var pedidoReservaQuadra = {
+                deviceId: data.registrationId,
+                quadra: quadra
+            }
+
+            Products.postPedidoProduct(pedidoReservaQuadra).success(function (data) {
+                console.log(data);
+                $scope.product = data;
+            }).error(function (data, status) {
+                console.log("Erro ao executar get");
+            });
         });
 
-        push.on('notification', function(data) {
-            alert(data.title+" Message: " +data.message);
+        push.on('notification', function (data) {
+            alert(data.title + " Message: " + data.message);
         });
 
-        push.on('error', function(e) {
+        push.on('error', function (e) {
             alert(e);
         });
     }
-
-
-
-})
-
-
-.controller('ProductsCtrl', function ($scope, Products) {
-    $scope.products = Products.getProductsAll()
-})
-.controller('ProductServicesCrtl', function ($scope, $stateParams, Products) {
-    $scope.product = Products.getProduct($stateParams.productId);
-    $scope.servicesAll = Products.getServicesAll($stateParams.productId);
 });
 

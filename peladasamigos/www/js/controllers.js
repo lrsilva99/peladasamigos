@@ -1,8 +1,7 @@
 angular.module('starter.controllers', ['ngCordova'])
 
-.controller('HomeCtrl', function ($scope) {
 
-})
+.controller('HomeCtrl', function ($scope) {})
 
 
 .controller('ProductsCtrl', function ($scope, $http, Products) {
