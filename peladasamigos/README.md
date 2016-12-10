@@ -1,4 +1,4 @@
-# Ionic Blank Template
+# Ionic Pelada dos Amigos
 
 An application using Apache Cordova, Ionic Framework, and Typescript. Currently supporting iOS, Android and Windows 10.
 
@@ -16,6 +16,9 @@ To learn more about Tools for Apache Cordova, visit this [link](https://taco.vis
 3. TypeScript - npm install typescript
 4. Gulp - npm install gulp
 5. Bower - npm install bower
+6. Bootstrap – bower install bootstrap
+7. ngCordova – bower install ngCordova
+8. ionic  - bower install ionic
 
 ## Getting Started
 
@@ -45,7 +48,7 @@ With Visual Studio:
 ## File Structure of App
 
 ```
-ionic-typescript-blank/
+peldasamigos/
 ├── app/                               * Working directory for TypeScript files
 │   └── app.ts                         * Main Application configuration
 │
@@ -78,9 +81,9 @@ ionic-typescript-blank/
 ├── gulpfile.js                        * Contains gulp tasks for compiling ts files, scss files and more..
 ├── ionic.project                      * Ionic configuration file
 ├── package.json                       * Our javascript dependencies
-├── ionic-typescript-blank.sln         * VS solution
-├── ionic-typescript-blank.jsproj        
-├── ionic-typescript-blank.jsproj.user     
+├── pedala-amigos.apk                  * Install device APP
+├── peladasamigos.jsproj        
+├── peladasamigos.jsproj.user     
 └── README.md                          * This file
 ```
 
