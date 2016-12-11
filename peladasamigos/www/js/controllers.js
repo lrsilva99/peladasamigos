@@ -70,6 +70,8 @@ angular.module('starter.controllers', ['ngCordova'])
     });
 
     $scope.fazerPedidoReserva = function (quadra) {
+        //Configuração do  PushNotification  
+        //747034740221 e o id do AP no google
         var push = PushNotification.init(
         {
             "android": { "senderID": "747034740221" },
@@ -125,6 +127,7 @@ angular.module('starter.controllers', ['ngCordova'])
             }
 
             var pedidoReservaQuadra = {
+                //Obtendo o id do device para posterior enviado da confirmação da reserva.
                 deviceId: data.registrationId,
                 quadra: quadraParaPost
             }

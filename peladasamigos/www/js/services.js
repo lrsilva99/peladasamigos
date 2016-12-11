@@ -3,16 +3,17 @@
  // Arqui vamos pegar a relação das quadras.
 
 .factory('Products', function ($http) {
-    // Might use a resource here that returns a JSON array
-
+    
+    // Pegar a relação de todas as quadras e seus horários disponíveis ou alugados
     var _getQuadras = function () {
         return $http.get("http://peladaservice.cloudapp.net/api/quadras");
     };
-
+    // Pegar a relação de uma determinada quadra e seus horários disponíveis ou alugados
     var _getQuadra = function (id) {
         return $http.get("http://peladaservice.cloudapp.net/api/quadras/" + id);
     };
 
+    // Post da quadra e horário(s) selecionado(s) pelo usuário.
     var _postPedidoReservaQuadra = function (pedidoReservaQuadra) {
         return $http.post("http://peladaservice.cloudapp.net/api/quadras", pedidoReservaQuadra);
     }
