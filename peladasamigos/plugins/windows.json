@@ -1,0 +1,44 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "Pelada dos Ami"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "Pelada dos Ami"
+        },
+        "cordova-plugin-ms-adal": {
+            "PACKAGE_NAME": "Pelada dos Ami"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "Pelada dos Ami"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "Pelada dos Ami"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "Pelada dos Ami"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "Pelada dos Ami"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "31994504001",
+            "PACKAGE_NAME": "Pelada dos Ami"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "Pelada dos Ami"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "Pelada dos Ami"
+        }
+    }
+}

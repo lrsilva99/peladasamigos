@@ -1,7 +1,20 @@
-angular.module('starter.controllers', ['ngCordova'])
+angular.module('starter.controllers', ['ngCordova', 'ngCordovaOauth', 'ngStorage'])
 
-.controller('HomeCtrl', function ($scope) {
+.controller('HomeCtrl', function ($scope, $cordovaOauth, $localStorage) {
+    $scope.login = function () {
+        
+        $cordovaOauth.facebook("1084296558351646", ["email", "public_profile"], { redirect_uri: "http://localhost/callback" }).then(function (result) {
+           
+            
+            $localStorage.accessToken = result.access_token;
+            //Alert recuperando o access_token no localStorage
+            alert($localStorage.accessToken);
+            
 
+        }, function (error) {
+            alert("Auth Failed..!!" + error);
+        });
+    };
 })
 
 .controller('ProductsCtrl', function ($scope, $http, Products) {
@@ -11,6 +24,7 @@ angular.module('starter.controllers', ['ngCordova'])
     }).error(function (data, status) {
         console.log("Erro ao executar get produtos");
     });
+
 })
 
 .controller('ProductServicesCrtl', function ($scope, $stateParams, $ionicPopup, Products) {
@@ -70,6 +84,8 @@ angular.module('starter.controllers', ['ngCordova'])
     });
 
     $scope.fazerPedidoReserva = function (quadra) {
+        //Configuração do  PushNotification  
+        //747034740221 e o id do AP no google
         var push = PushNotification.init(
         {
             "android": { "senderID": "747034740221" },
@@ -125,6 +141,7 @@ angular.module('starter.controllers', ['ngCordova'])
             }
 
             var pedidoReservaQuadra = {
+                //Obtendo o id do device para posterior enviado da confirmação da reserva.
                 deviceId: data.registrationId,
                 quadra: quadraParaPost
             }
