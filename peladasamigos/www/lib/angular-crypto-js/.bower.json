@@ -1,0 +1,48 @@
+{
+  "name": "angular-crypto-js",
+  "version": "1.0.6",
+  "authors": [
+    "J Andre Pires <janppires@gmail.com>"
+  ],
+  "description": "Angular wrapper around https://github.com/brix/crypto-js.git",
+  "main": "angular-crypto-js.js",
+  "moduleType": [
+    "globals"
+  ],
+  "dependencies": {
+    "angular": "1.4.9",
+    "crypto-js": "3.1.6"
+  },
+  "exportsOverride": {
+    "crypto-js": {
+      "/": "crypto-js.js"
+    }
+  },
+  "keywords": [
+    "angular",
+    "crypto",
+    "cryptoJs",
+    "md5",
+    "sha1",
+    "hex"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/janppires/angular-crypto-js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "1.0.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.6",
+    "commit": "88862175e9a8d3850ace553ad093249594175c9c"
+  },
+  "_source": "https://github.com/janppires/angular-crypto-js.git",
+  "_target": "^1.0.6",
+  "_originalSource": "angular-crypto-js",
+  "_direct": true
+}

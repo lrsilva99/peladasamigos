@@ -1,36 +1,55 @@
-angular.module('starter.controllers', ['ngCordova', 'ngCordovaOauth', 'ngStorage'])
+angular.module('starter.controllers', ['ngCordova', 'ngCordovaOauth', 'ngStorage', 'angularjs-crypto'])
 
-.controller('HomeCtrl', function ($scope, $cordovaOauth, $localStorage) {
+.controller('HomeCtrl', function ($http, $scope, $cordovaOauth, $localStorage, $crypto) {
     $scope.login = function () {
-        
-        $cordovaOauth.facebook("1084296558351646", ["email", "public_profile"], { redirect_uri: "http://localhost/callback" }).then(function (result) {
-           
-            
-            $localStorage.accessToken = result.access_token;
-            //Alert recuperando o access_token no localStorage
-            alert($localStorage.accessToken);
-            
+       
+        if ($localStorage.accessToken){
 
+            $http.get('https://graph.facebook.com/v2.5/me', { params: { access_token: $localStorage.accessToken, fields: 'id,name,email,gender,location,picture', format: 'json' } }).then(function (result) {               
+            }, function (error) {
+                $localStorage.accessToken = null;
+                alert("Logar novamente")
+            });
+        }
+        else {
+            $cordovaOauth.facebook("1084296558351646", ["email", "public_profile"], { redirect_uri: "http://localhost/callback" }).then(function (result) {
+                $localStorage.accessToken = result.access_token;
+                $http.get('https://graph.facebook.com/v2.5/me', { params: { access_token: result.access_token, fields: 'id,name,email,gender,location,picture', format: 'json' } }).then(function (result2) {
+                    $localStorage.id = crypto.createHash('sha256').update(result2.data.id).digest(CryptoJS);
+                    
+                });
         }, function (error) {
             alert("Auth Failed..!!" + error);
         });
-    };
+        }; 
+    }
 })
 
-.controller('ProductsCtrl', function ($scope, $http, Products) {
-    Products.getProductsAll().success(function (data) {
-        console.log("Get produtos executado com sucesso");
-        $scope.products = data;
-    }).error(function (data, status) {
-        console.log("Erro ao executar get produtos");
-    });
+.controller('ProductsCtrl', function ($scope, $http, $localStorage, Products) {
+    if ($localStorage.access_token) {
+        $http.get('https://graph.facebook.com/v2.5/me', { params: { access_token: result.access_token, fields: 'id,name,email,gender,location,picture', format: 'json' } }).then(function (result2) {
+            Products.getProductsAll().success(function (data) {
+                console.log("Get produtos executado com sucesso");
+                alert("Get produtos executado com sucesso");
+                $scope.products = data;
+            }).error(function (data, status) {
+                console.log("Erro ao executar get produtos");
+            });
+        }, function (error) {
+            alert("Erro de autenticação" + error);
+        });
+
+    } else {
+        alert('Usuário não autenticado')
+    }
+    
 
 })
 
 .controller('ProductServicesCrtl', function ($scope, $stateParams, $ionicPopup, Products) {
 
-
-    Products.getProduct($stateParams.productId).success(function (data) {
+    $http.get('https://graph.facebook.com/v2.5/me', { params: { access_token: result.access_token, fields: 'id,name,email,gender,location,picture', format: 'json' } }).then(function (result2) {
+        Products.getProduct($stateParams.productId).success(function (data) {
         console.log("Get produto executado com sucesso");
 
         var reservaParaAlteracao = [
@@ -79,6 +98,17 @@ angular.module('starter.controllers', ['ngCordova', 'ngCordovaOauth', 'ngStorage
         data.reservas = reservaParaAlteracao;
 
         $scope.product = data;
+        }, function (error) {
+            $cordovaOauth.facebook("1084296558351646", ["email", "public_profile"], { redirect_uri: "http://localhost/callback" }).then(function (result) {
+                $localStorage.accessToken = result.access_token;
+                $http.get('https://graph.facebook.com/v2.5/me', { params: { access_token: result.access_token, fields: 'id,name,email,gender,location,picture', format: 'json' } }).then(function (result2) {
+                    $localStorage.id = result2.data.id;
+                    //Alert recuperando o access_token no localStorage
+                });
+            }, function (error) {
+                alert("Auth Failed..!!" + error);
+            });
+        });
     }).error(function (data, status) {
         console.log("Erro ao executar get produto");
     });
